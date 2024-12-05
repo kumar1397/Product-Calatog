@@ -45,9 +45,11 @@ const ProductCatalog: React.FC = () => {
           <div key={product.id} onClick={() => handleCardClick(product)}>
             <div className=" p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
               <Image
+                width={320}          // Aspect ratio: width
+                height={320}
                 src={product.imageUrl}
                 alt={product.name}
-                className="w-full h-80 object-cover rounded-md mb-4"
+                className="w-full h-80 rounded-md mb-4"
               />
               <h3 className="text-lg font-semibold">{product.name}</h3>
               <p className="text-sm text-gray-600">{product.description}</p>
