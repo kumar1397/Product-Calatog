@@ -1,0 +1,56 @@
+[
+    {
+      "id": 1,
+      "name": "Colmar",
+      "imageUrl": "/colmar.jpg",
+      "description": "Comfortable chair with soft cushions and wooden legs."
+    },
+    {
+      "id": 2,
+      "name": "Bay",
+      "imageUrl": "/bay.jpg",
+      "description": "Modern chair with a minimalist design and steel frame."
+    },
+    {
+      "id": 3,
+      "name": "Aspen",
+      "imageUrl": "/aspen.jpg",
+      "description": "Elegant chair with a classic design and high-quality materials."
+    },
+    {
+      "id": 4,
+      "name": "Haven",
+      "imageUrl": "/haven.jpg",
+      "description": "Stylish chair with a cozy fabric seat and sturdy wooden base."
+    },
+    {
+      "id": 5,
+      "name": "Laguna",
+      "imageUrl": "/laguna.jpg",
+      "description": "A sleek chair featuring leather upholstery and a polished metal frame."
+    },
+    {
+      "id": 6,
+      "name": "Arden",
+      "imageUrl": "/arden.jpg",
+      "description": "Luxurious chair with an ergonomic design and premium materials."
+    },
+    {
+      "id": 7,
+      "name": "Pinecrest",
+      "imageUrl": "/pinecrest.jpg",
+      "description": "Rustic-style chair crafted with natural wood and comfortable cushions."
+    },
+    {
+      "id": 8,
+      "name": "Breeze",
+      "imageUrl": "/breeze.jpg",
+      "description": "Lightweight chair with breathable mesh fabric and a durable frame."
+    },
+    {
+      "id": 9,
+      "name": "Summit",
+      "imageUrl": "/summit.jpg",
+      "description": "Contemporary chair with bold lines and soft, plush padding."
+    }
+  ]
