@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import products from "./ProductData.json";
 import Image from "next/image";
+
 type Product = {
   id: number;
   name: string;
@@ -12,6 +13,18 @@ type Product = {
 const ProductCatalog: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    // Simulate data fetching delay
+    const timer = setTimeout(() => {
+      setFilteredProducts(products);
+      setLoading(false);
+    }, 1500); // Simulated delay of 1.5 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCardClick = (product: Product) => {
     setSelectedProduct(product);
@@ -21,7 +34,7 @@ const ProductCatalog: React.FC = () => {
     setSearchTerm(e.target.value.toLowerCase());
   };
 
-  const filteredProducts = products.filter((product: Product) =>
+  const filteredResults = filteredProducts.filter((product: Product) =>
     product.name.toLowerCase().includes(searchTerm)
   );
 
@@ -37,31 +50,42 @@ const ProductCatalog: React.FC = () => {
           onChange={handleSearchChange}
           placeholder="Search for a product..."
           className="w-full sm:w-1/2 p-2 border text-gray-600 border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+          disabled={loading} // Disable input while loading
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-        {filteredProducts.map((product: Product) => (
-          <div key={product.id} onClick={() => handleCardClick(product)}>
-            <div className=" p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
-              <Image
-                width={320}
-                height={320}
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full h-80 rounded-md mb-4"
-              />
-              <h3 className="text-lg font-semibold">{product.name}</h3>
-              <p className="text-sm text-gray-600">{product.description}</p>
+      {/* Loader */}
+      {loading ? (
+        <div className="flex justify-center items-center h-48">
+          <div className="loader border-t-4 border-blue-500 rounded-full w-12 h-12 animate-spin"></div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
+          {filteredResults.map((product: Product) => (
+            <div key={product.id} onClick={() => handleCardClick(product)}>
+              <div className="p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <Image
+                  width={320}
+                  height={320}
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="w-full h-80 rounded-md mb-4"
+                />
+                <h3 className="text-lg font-semibold">{product.name}</h3>
+                <p className="text-sm text-gray-600">{product.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
+      {/* Modal */}
       {selectedProduct && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg max-w-md text-left">
-            <h3 className="text-xl text-black font-semibold mb-2">{selectedProduct.name}</h3>
+            <h3 className="text-xl text-black font-semibold mb-2">
+              {selectedProduct.name}
+            </h3>
             <p className="text-gray-800">{selectedProduct.description}</p>
             <button
               onClick={() => setSelectedProduct(null)}
