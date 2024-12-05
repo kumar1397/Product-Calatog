@@ -41,11 +41,11 @@ const ProductCatalog: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-        {filteredProducts.map((product: any) => (
+        {filteredProducts.map((product: Product) => (
           <div key={product.id} onClick={() => handleCardClick(product)}>
             <div className=" p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
               <Image
-                width={320}          // Aspect ratio: width
+                width={320}
                 height={320}
                 src={product.imageUrl}
                 alt={product.name}
