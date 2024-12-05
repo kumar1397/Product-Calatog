@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import products from "./ProductData.json";
-
+import Image from "next/image";
 type Product = {
   id: number;
   name: string;
@@ -44,7 +44,7 @@ const ProductCatalog: React.FC = () => {
         {filteredProducts.map((product: any) => (
           <div key={product.id} onClick={() => handleCardClick(product)}>
             <div className=" p-4 text-center shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
-              <img
+              <Image
                 src={product.imageUrl}
                 alt={product.name}
                 className="w-full h-80 object-cover rounded-md mb-4"
